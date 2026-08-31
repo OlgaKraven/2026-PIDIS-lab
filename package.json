@@ -1,0 +1,39 @@
+{
+  "name": "2026-pidis-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.15.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && node scripts/prepare-dist.mjs",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "oxlint src scripts tests",
+    "spellcheck": "cspell --config cspell.config.yaml \"{src,content,teacher,inputs,docs}/**/*.{ts,tsx,md}\" README.md SOURCES.md coverage-matrix.md",
+    "test": "node --test tests/*.test.mjs",
+    "test:links": "node scripts/check-links.mjs",
+    "test:smoke": "node scripts/smoke.mjs",
+    "test:reports": "node scripts/check-reports.mjs",
+    "qa": "pnpm run lint && pnpm run typecheck && pnpm run spellcheck && pnpm run test && pnpm run test:reports && pnpm run build && pnpm run test:links && pnpm run test:smoke"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@cspell/dict-ru_ru": "^2.3.2",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.5.0",
+    "cspell": "^9.0.0",
+    "oxlint": "^1.15.0",
+    "playwright": "^1.55.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

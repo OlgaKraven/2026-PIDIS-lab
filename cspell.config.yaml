@@ -1,0 +1,59 @@
+version: "0.2"
+import:
+  - "@cspell/dict-ru_ru/cspell-ext.json"
+language: ru,ru-ru,en
+useGitignore: true
+ignorePaths:
+  - node_modules/**
+  - dist/**
+  - .qa/**
+  - reports/**
+  - src/labs.json
+  - pnpm-lock.yaml
+ignoreRegExpList:
+  - /https?:\/\/\S+/g
+  - /`[^`]+`/g
+words:
+  - ПиДИС
+  - ДКИП
+  - Синергия
+  - Synergy
+  - Wireframe
+  - wireframe
+  - user
+  - story
+  - Given
+  - When
+  - Then
+  - UI-kit
+  - UI
+  - UX
+  - RBAC
+  - ADR
+  - DOCX
+  - LMS
+  - Markdown
+  - GitHub
+  - Pages
+  - TypeScript
+  - Vite
+  - Playwright
+  - pnpm
+  - oxlint
+  - cspell
+  - webp
+  - РПД
+  - ФГОС
+  - PIDIS
+  - FEFO
+  - трассируемость
+  - трассируемости
+  - антипаттернов
+  - анонимизированный
+  - журналирование
+  - журналируются
+  - журналируется
+  - журналировать
+  - подтема
+  - переиспользуется
+  - токенах
