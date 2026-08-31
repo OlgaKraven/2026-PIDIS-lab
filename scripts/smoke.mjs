@@ -39,7 +39,10 @@ try {
   assert.equal(await page.locator('.card').count(), 1);
   await page.getByRole('link', { name: /Открыть работу/ }).click();
   await page.getByRole('heading', { name: 'ER-диаграмма в 3НФ' }).waitFor();
-  assert.equal(await page.getByRole('heading', { level: 2 }).count(), 10);
+  const contentBlocks = page.locator('.content-block');
+  await contentBlocks.nth(9).waitFor({ state: 'attached' });
+  assert.equal(await contentBlocks.count(), 10);
+  assert.equal(await contentBlocks.locator('h2').count(), 10);
   assert.equal(await page.getByText(new RegExp('Moo' + 'dle', 'i')).count(), 0);
   const actionableErrors = errors.filter((message) => !message.includes('favicon.ico') && !message.startsWith('Failed to load resource:'));
   assert.equal(actionableErrors.length, 0, errors.join('\n'));
