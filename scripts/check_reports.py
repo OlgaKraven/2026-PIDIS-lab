@@ -13,7 +13,7 @@ REPORTS = ROOT / "reports"
 
 def main() -> None:
     files = sorted(REPORTS.glob("*.docx"))
-    assert len(files) == 31, f"Ожидалось 31 DOCX, найдено {len(files)}"
+    assert len(files) == 20, f"Ожидалось 20 DOCX, найдено {len(files)}"
     results = []
     for path in files:
         doc = Document(path)
@@ -23,7 +23,7 @@ def main() -> None:
         assert match, path.name
         lab_id = match.group(1).replace("_", "-")
         assert lab_id in text, f"{path.name}: нет ID"
-        assert "Критерии LMS · 10 баллов" in text, f"{path.name}: нет критериев LMS"
+        assert re.search(r"Критерии LMS · \d+ балл(?:а|ов)?", text), f"{path.name}: нет критериев LMS"
         legacy_name = "Moo" + "dle"
         assert legacy_name.lower() not in text.lower(), f"{path.name}: осталось устаревшее название"
         assert len(doc.tables) >= 3, f"{path.name}: недостаточно таблиц"

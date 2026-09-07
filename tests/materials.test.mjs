@@ -16,12 +16,13 @@ async function walk(directory) {
   return result;
 }
 
-test('каталог содержит 31 уникальную работу в распределении 19/7/5', () => {
-  assert.equal(labs.length, 31);
-  assert.equal(new Set(labs.map((lab) => lab.id)).size, 31);
-  assert.equal(labs.filter((lab) => lab.course === 3 && lab.semester === 5).length, 19);
+test('каталог содержит 20 уникальных работ в распределении 8/7/5 и 100 баллов', () => {
+  assert.equal(labs.length, 20);
+  assert.equal(new Set(labs.map((lab) => lab.id)).size, 20);
+  assert.equal(labs.filter((lab) => lab.course === 3 && lab.semester === 5).length, 8);
   assert.equal(labs.filter((lab) => lab.course === 3 && lab.semester === 6).length, 7);
   assert.equal(labs.filter((lab) => lab.course === 4 && lab.semester === 7).length, 5);
+  assert.equal(labs.reduce((sum, lab) => sum + lab.points, 0), 100);
 });
 
 test('у каждой работы есть полный студенческий комплект', async () => {
@@ -35,6 +36,7 @@ test('у каждой работы есть полный студенчески�
     assert.ok(lab.artifact_fields.length >= 5, `${lab.id}: мало полей артефакта`);
     assert.ok(lab.lectures.length >= 1, `${lab.id}: нет лекции`);
     assert.equal(lab.durationBlocks, 1, `${lab.id}: работа должна занимать один учебный блок`);
+    assert.ok(Number.isInteger(lab.points) && lab.points > 0, `${lab.id}: некорректный максимальный балл`);
     assert.equal(lab.lmsUrl, 'https://lms.synergy.ru/');
     assert.ok((await stat(resolve(root, lab.reportUrl))).isFile(), `${lab.id}: нет DOCX`);
     assert.ok((await stat(resolve(root, lab.input_file))).isFile(), `${lab.id}: нет исходных данных`);
@@ -53,6 +55,6 @@ test('публичные материалы не содержат устарев
 
 test('комплект преподавателя содержит карточку и рубрику для каждой работы', async () => {
   const files = await readdir(resolve(root, 'teacher'));
-  assert.equal(files.filter((name) => name.endsWith('_guide.md')).length, 31);
-  assert.equal(files.filter((name) => name.endsWith('_rubric.md')).length, 31);
+  assert.equal(files.filter((name) => name.endsWith('_guide.md')).length, 20);
+  assert.equal(files.filter((name) => name.endsWith('_rubric.md')).length, 20);
 });

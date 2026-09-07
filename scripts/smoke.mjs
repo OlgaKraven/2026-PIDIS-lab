@@ -32,7 +32,7 @@ try {
   page.on('response', (response) => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await page.getByRole('heading', { name: 'Лабораторные как проектный спринт' }).waitFor();
-  assert.equal(await page.locator('.card').count(), 31);
+  assert.equal(await page.locator('.card').count(), 20);
   assert.equal(await page.locator('img').evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0)), true);
   assert.equal((await fetch(new URL('reports/C3_S5_LR01_Шаблон_отчёта.docx', baseUrl))).status, 200);
   await page.getByPlaceholder('ID, название или артефакт').fill('ER-диаграмма');

@@ -9,4 +9,4 @@ await cp(resolve(root, 'reports'), resolve(dist, 'reports'), { recursive: true, 
 await copyFile(resolve(dist, 'index.html'), resolve(dist, '404.html'));
 await writeFile(resolve(dist, '.nojekyll'), '', 'utf8');
 
-console.log('dist prepared: 31 DOCX templates, 404 fallback, .nojekyll');
+console.log('dist prepared: 20 DOCX templates, 404 fallback, .nojekyll');

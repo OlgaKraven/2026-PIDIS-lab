@@ -49,11 +49,20 @@ type Lab = {
   materialUrl: string;
   lmsUrl: string;
   durationBlocks: number;
+  points: number;
 };
 
 const labs = labsData as Lab[];
 const allSections = [...new Set(labs.map((lab) => lab.section))];
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+const formatPoints = (points: number) => {
+  const noun = points % 10 === 1 && points % 100 !== 11
+    ? 'балл'
+    : points % 10 >= 2 && points % 10 <= 4 && !(points % 100 >= 12 && points % 100 <= 14)
+      ? 'балла'
+      : 'баллов';
+  return `${points} ${noun}`;
+};
 
 function getRoute() {
   const match = window.location.hash.match(/^#\/lab\/([^/]+)$/);
@@ -113,7 +122,7 @@ function Catalog({ pageStartRef }: { pageStartRef: React.RefObject<HTMLElement |
         <h1>Лабораторные как проектный спринт</h1>
         <p className="lead">От факта заказчика — к решению, артефакту и проверке.</p>
         <div className="metrics" aria-label="Структура курса">
-          <span><b>31</b> работа</span><span><b>3</b> семестра</span><span><b>1</b> сквозной проект</span>
+          <span><b>{labs.length}</b> работ</span><span><b>3</b> семестра</span><span><b>100</b> баллов</span>
         </div>
       </div>
       <img className="mascot" src={assetUrl('brand/rhino-designer.webp')} alt="Носорог-проектировщик у доски" />
@@ -136,7 +145,7 @@ function Catalog({ pageStartRef }: { pageStartRef: React.RefObject<HTMLElement |
           <label className="section-filter"><span>Раздел</span><select value={section} onChange={(event) => setSection(event.target.value)}><option value="all">Все разделы</option>{allSections.map((item) => <option key={item}>{item}</option>)}</select></label>
         </div>
       </section>
-      <div className="catalog-status" aria-live="polite"><b>{visible.length}</b> из 31 работ</div>
+      <div className="catalog-status" aria-live="polite"><b>{visible.length}</b> из {labs.length} работ</div>
       <section className="grid" aria-label="Лабораторные работы">
         {visible.map((lab) => <LabCard key={lab.id} lab={lab} />)}
       </section>
@@ -148,7 +157,7 @@ function Catalog({ pageStartRef }: { pageStartRef: React.RefObject<HTMLElement |
 
 function LabCard({ lab }: { lab: Lab }) {
   return <article className="card">
-    <div className="card__meta"><span>{lab.id}</span><span>{lab.course} курс · {lab.semester} семестр</span></div>
+    <div className="card__meta"><span>{lab.id}</span><span>{lab.course} курс · {lab.semester} семестр · {formatPoints(lab.points)}</span></div>
     <p className="card__section">{lab.section}</p>
     <h3>{lab.title}</h3>
     <div className="result"><span>Результат</span><p>{lab.artifact}</p></div>
@@ -208,12 +217,12 @@ function LabPage({ lab, pageStartRef }: { lab: Lab; pageStartRef: React.RefObjec
         <ContentBlock icon={<Route />} kicker="05 · Действия" title="Маршрут выполнения"><BulletList items={routeSteps} numbered /><aside className="decision-callout"><b>Проектное решение</b><p>{lab.decision}</p></aside></ContentBlock>
         <ContentBlock icon={<Lightbulb />} kicker="06 · Ориентир" title="Мини-пример"><p>{lab.example}</p><p className="note">Пример показывает форму рассуждения, но не содержит ответа на учебный кейс.</p></ContentBlock>
         <ContentBlock icon={<FileText />} kicker="07 · Отчёт" title="Что должно быть в Word"><BulletList items={wordSections} /><a className="inline-link" href={assetUrl(lab.reportUrl)} download>Скачать редактируемый шаблон <Download aria-hidden="true" /></a></ContentBlock>
-        <ContentBlock icon={<ClipboardCheck />} kicker="08 · Сдача" title="Что проверяется в LMS"><p><b>Ожидаемый результат.</b> {lab.expected}</p><p><b>Ключевой критерий.</b> {lab.quality}</p><p><b>Связь с демонстрационным экзаменом.</b> {lab.demo}</p><p className="note">Загрузите заполненный DOCX в задание своего курса после авторизации.</p><a className="inline-link" href={lab.lmsUrl} target="_blank" rel="noreferrer">Перейти в LMS <ExternalLink aria-hidden="true" /></a></ContentBlock>
+        <ContentBlock icon={<ClipboardCheck />} kicker="08 · Сдача" title="Что проверяется в LMS"><p><b>Максимальный балл.</b> {lab.points}</p><p><b>Ожидаемый результат.</b> {lab.expected}</p><p><b>Ключевой критерий.</b> {lab.quality}</p><p><b>Связь с демонстрационным экзаменом.</b> {lab.demo}</p><p className="note">Загрузите заполненный DOCX в задание своего курса после авторизации.</p><a className="inline-link" href={lab.lmsUrl} target="_blank" rel="noreferrer">Перейти в LMS <ExternalLink aria-hidden="true" /></a></ContentBlock>
         <ContentBlock icon={<CheckCircle2 />} kicker="09 · Перед отправкой" title="Самопроверка"><ul className="checklist">{checks.map((item) => <li key={item}><CheckCircle2 aria-hidden="true" />{item}</li>)}</ul></ContentBlock>
         <ContentBlock icon={<BookOpen />} kicker="10 · Теория" title="Лекции к работе"><div className="lecture-list">{lab.lectures.map((lecture, index) => <a key={lecture.url} href={lecture.url} target="_blank" rel="noreferrer"><span>{String(index + 1).padStart(2, '0')}</span><b>{lecture.title}</b><ExternalLink aria-hidden="true" /></a>)}</div></ContentBlock>
       </section>
       <aside className="lab-sidebar" aria-label="Краткая карточка работы">
-        <div className="sticky-card"><p className="eyebrow">КАРТОЧКА РАБОТЫ</p><dl><div><dt>ID</dt><dd>{lab.id}</dd></div><div><dt>Артефакт</dt><dd>{lab.artifact}</dd></div><div><dt>Учебный блок</dt><dd>1</dd></div></dl><a className="primary-action" href={assetUrl(lab.reportUrl)} download><Download aria-hidden="true" />Скачать шаблон</a><a className="back-link" href="#/"><ArrowLeft aria-hidden="true" />Ко всем работам</a></div>
+        <div className="sticky-card"><p className="eyebrow">КАРТОЧКА РАБОТЫ</p><dl><div><dt>ID</dt><dd>{lab.id}</dd></div><div><dt>Артефакт</dt><dd>{lab.artifact}</dd></div><div><dt>Учебный блок</dt><dd>1</dd></div><div><dt>Максимальный балл</dt><dd>{lab.points}</dd></div></dl><a className="primary-action" href={assetUrl(lab.reportUrl)} download><Download aria-hidden="true" />Скачать шаблон</a><a className="back-link" href="#/"><ArrowLeft aria-hidden="true" />Ко всем работам</a></div>
       </aside>
     </main>
     <SiteFooter />
@@ -230,7 +239,7 @@ function BulletList({ items, numbered = false }: { items: string[]; numbered?: b
 }
 
 function SiteFooter() {
-  return <footer className="site-footer"><div><img src={assetUrl('brand/synergy-logo.webp')} alt="" /><p>МДК.05.01 · Проектирование и дизайн информационных систем</p></div><a href="#/">Каталог 31 лабораторной</a></footer>;
+  return <footer className="site-footer"><div><img src={assetUrl('brand/synergy-logo.webp')} alt="" /><p>МДК.05.01 · Проектирование и дизайн информационных систем</p></div><a href="#/">Каталог 20 лабораторных</a></footer>;
 }
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);
