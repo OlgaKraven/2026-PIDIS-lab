@@ -41,7 +41,7 @@ test('сквозные варианты содержат 30 самостояте
 test('студенческий интерфейс не содержит ссылок на Git-репозиторий и дублирующих скачиваний', async () => {
   const source = await readFile(resolve(root, 'src/main.tsx'), 'utf8');
   assert.doesNotMatch(source, /github\.com/i);
-  assert.equal((source.match(/'Скачать шаблон'/g) || []).length, 1);
+  assert.equal((source.match(/["']Скачать шаблон["']/g) || []).length, 1);
   assert.match(source, /downloadLabPackage/);
   assert.match(source, /pidis-variant/);
   assert.match(source, /pidis-theme/);

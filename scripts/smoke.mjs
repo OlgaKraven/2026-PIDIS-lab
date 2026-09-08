@@ -37,10 +37,15 @@ try {
   assert.equal(await page.locator('.card').count(), 20);
   assert.equal(await page.locator('.semester-grid article').count(), 3);
   assert.equal(await page.locator('.variant-picker select option').count(), 30);
+  assert.equal(await page.locator('.semester-switch button').count(), 4);
+  await page.getByRole('button', { name: '7 семестр' }).click();
+  assert.equal(await page.locator('.card').count(), 5);
+  await page.getByRole('button', { name: 'Все', exact: true }).click();
+  assert.equal(await page.locator('.card').count(), 20);
   await page.locator('.variant-picker:not(.compact) select').selectOption('6');
   assert.equal(await page.locator('img').evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0)), true);
   assert.equal((await fetch(new URL('reports/C3_S5_LR01_Шаблон_отчёта.docx', baseUrl))).status, 200);
-  await page.getByPlaceholder('ID, название или результат').fill('ER-диаграмма');
+  await page.getByPlaceholder('Номер, тема или практический результат').fill('ER-диаграмма');
   assert.equal(await page.locator('.card').count(), 1);
   await page.getByRole('link', { name: /Открыть работу/ }).click();
   await page.getByRole('heading', { name: 'ER-диаграмма в 3НФ' }).waitFor();
