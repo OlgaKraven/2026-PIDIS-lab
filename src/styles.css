@@ -704,42 +704,6 @@ a:focus-visible,
   color: #ffb0b3;
   font-size: 13px;
 }
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: rgb(0 0 0 / 62%);
-}
-.teacher-modal {
-  position: relative;
-  width: min(520px, 100%);
-  border-top: 7px solid var(--red);
-  border-radius: 16px;
-  padding: 30px;
-  background: var(--card);
-  box-shadow: 0 24px 80px rgb(0 0 0 / 35%);
-}
-.teacher-modal h2 {
-  margin: 0;
-  font-size: 34px;
-}
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  color: inherit;
-  background: var(--card);
-}
-.modal-close svg {
-  width: 18px;
-}
 .sr-only {
   position: absolute;
   width: 1px;
@@ -778,9 +742,6 @@ a:focus-visible,
   }
   .brand span {
     display: none;
-  }
-  .header-actions button:first-child {
-    font-size: 12px;
   }
   .home,
   .lab-page {

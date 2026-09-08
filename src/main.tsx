@@ -16,8 +16,6 @@ import {
   Search,
   Sun,
   Target,
-  UserRoundPen,
-  X,
 } from "lucide-react";
 import { courseConfig } from "./config";
 import { downloadLabPackage } from "./labPackage";
@@ -91,7 +89,6 @@ function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("pidis-theme") || "light",
   );
-  const [teacherOpen, setTeacherOpen] = useState(false);
   const pageStartRef = useRef<HTMLElement>(null);
   const variant = variants.find((item) => item.id === variantId) || variants[0];
   useEffect(() => {
@@ -120,7 +117,6 @@ function App() {
       <SiteHeader
         theme={theme}
         onTheme={() => setTheme(theme === "light" ? "dark" : "light")}
-        onTeacher={() => setTeacherOpen(true)}
       />
       {activeLab ? (
         <LabPage
@@ -136,7 +132,6 @@ function App() {
           pageStartRef={pageStartRef}
         />
       )}
-      {teacherOpen && <TeacherDialog onClose={() => setTeacherOpen(false)} />}
     </div>
   );
 }
@@ -144,11 +139,9 @@ function App() {
 function SiteHeader({
   theme,
   onTheme,
-  onTeacher,
 }: {
   theme: string;
   onTheme: () => void;
-  onTeacher: () => void;
 }) {
   return (
     <header className="site-header">
@@ -163,10 +156,6 @@ function SiteHeader({
         </span>
       </a>
       <div className="header-actions">
-        <button className="teacher-button" type="button" onClick={onTeacher}>
-          <UserRoundPen aria-hidden="true" />
-          Данные преподавателя
-        </button>
         <button
           className="theme-toggle"
           type="button"
@@ -182,28 +171,6 @@ function SiteHeader({
         </button>
       </div>
     </header>
-  );
-}
-
-function TeacherDialog({ onClose }: { onClose: () => void }) {
-  return (
-    <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section
-        className="teacher-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="teacher-title"
-        onMouseDown={(event) => event.stopPropagation()}
-      >
-        <button className="modal-close" onClick={onClose} aria-label="Закрыть">
-          <X />
-        </button>
-        <p className="eyebrow">ПРЕПОДАВАТЕЛЬ</p>
-        <h2 id="teacher-title">{courseConfig.teacher.name}</h2>
-        <p>{courseConfig.teacher.role}</p>
-        <p>{courseConfig.teacher.contact}</p>
-      </section>
-    </div>
   );
 }
 
