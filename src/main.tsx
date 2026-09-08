@@ -9,7 +9,6 @@ import {
   Download,
   FileText,
   GraduationCap,
-  Info,
   Layers3,
   Lightbulb,
   Moon,
@@ -17,6 +16,7 @@ import {
   Search,
   Sun,
   Target,
+  UserRoundPen,
   X,
 } from "lucide-react";
 import { courseConfig } from "./config";
@@ -163,8 +163,8 @@ function SiteHeader({
         </span>
       </a>
       <div className="header-actions">
-        <button type="button" onClick={onTeacher}>
-          <Info aria-hidden="true" />
+        <button className="teacher-button" type="button" onClick={onTeacher}>
+          <UserRoundPen aria-hidden="true" />
           Данные преподавателя
         </button>
         <button

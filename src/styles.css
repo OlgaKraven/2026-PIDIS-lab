@@ -88,15 +88,15 @@ a:focus-visible,
   letter-spacing: 0.12em;
 }
 .site-header {
-  max-width: 1500px;
-  height: 72px;
+  width: min(calc(100% - 36px), 1280px);
+  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   margin: auto;
-  padding: 10px clamp(18px, 4vw, 58px);
-  background: var(--card);
+  padding: 12px 0;
+  background: transparent;
 }
 .brand {
   display: flex;
@@ -121,25 +121,26 @@ a:focus-visible,
 }
 .header-actions {
   display: flex;
-  gap: 8px;
+  gap: 9px;
 }
 .header-actions button {
-  min-height: 42px;
+  min-height: 46px;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 9px;
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 0 13px;
+  border-radius: 12px;
+  padding: 0 16px;
   color: inherit;
-  background: var(--card);
-  font-weight: 750;
+  background: color-mix(in srgb, var(--card) 92%, var(--red) 8%);
+  box-shadow: 0 3px 12px rgb(20 20 24 / 4%);
+  font-weight: 850;
 }
 .header-actions svg {
-  width: 18px;
+  width: 19px;
 }
 .theme-toggle {
-  width: 42px;
+  width: 46px;
   padding: 0 !important;
   justify-content: center;
 }
@@ -149,6 +150,8 @@ a:focus-visible,
   padding: 0 clamp(18px, 4vw, 58px) 80px;
 }
 .hero {
+  width: min(100%, 1280px);
+  margin-inline: auto;
   min-height: 390px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 38%);

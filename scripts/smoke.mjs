@@ -34,6 +34,11 @@ try {
   page.on('response', (response) => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await page.getByRole('heading', { name: /Проектирование начинается/ }).waitFor();
+  const heroBox = await page.locator('.hero').boundingBox();
+  assert.ok(heroBox && heroBox.width <= 1280 && heroBox.x > 0);
+  const teacherButtonBox = await page.locator('.teacher-button').boundingBox();
+  const themeButtonBox = await page.locator('.theme-toggle').boundingBox();
+  assert.ok(teacherButtonBox && themeButtonBox && teacherButtonBox.height === themeButtonBox.height);
   assert.equal(await page.locator('.card').count(), 20);
   assert.equal(await page.locator('.semester-grid article').count(), 3);
   assert.equal(await page.locator('.variant-picker select option').count(), 30);
