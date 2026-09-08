@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const labs = JSON.parse(await readFile(resolve(root, 'src/labs.json'), 'utf8'));
+const variants = JSON.parse(await readFile(resolve(root, 'src/variants.json'), 'utf8'));
 
 async function walk(directory) {
   const result = [];
@@ -23,6 +24,27 @@ test('каталог содержит 20 уникальных работ в ра
   assert.equal(labs.filter((lab) => lab.course === 3 && lab.semester === 6).length, 7);
   assert.equal(labs.filter((lab) => lab.course === 4 && lab.semester === 7).length, 5);
   assert.equal(labs.reduce((sum, lab) => sum + lab.points, 0), 100);
+});
+
+test('сквозные варианты содержат 30 самостоятельных предметных областей', () => {
+  assert.equal(variants.length, 30);
+  assert.equal(new Set(variants.map((variant) => variant.code)).size, 30);
+  assert.equal(new Set(variants.map((variant) => variant.system)).size, 30);
+  for (const variant of variants) {
+    assert.match(variant.code, /^PV\d{2}$/);
+    assert.ok(variant.roles.length >= 3, `${variant.code}: недостаточно ролей`);
+    assert.ok(variant.objects.length >= 4, `${variant.code}: недостаточно сущностей`);
+    assert.ok(variant.process && variant.conflict, `${variant.code}: нет процесса или противоречия`);
+  }
+});
+
+test('студенческий интерфейс не содержит ссылок на Git-репозиторий и дублирующих скачиваний', async () => {
+  const source = await readFile(resolve(root, 'src/main.tsx'), 'utf8');
+  assert.doesNotMatch(source, /github\.com/i);
+  assert.equal((source.match(/'Скачать шаблон'/g) || []).length, 1);
+  assert.match(source, /downloadLabPackage/);
+  assert.match(source, /pidis-variant/);
+  assert.match(source, /pidis-theme/);
 });
 
 test('у каждой работы есть полный студенческий комплект', async () => {

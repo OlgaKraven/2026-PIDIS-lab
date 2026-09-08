@@ -17,6 +17,7 @@
     "qa": "pnpm run lint && pnpm run typecheck && pnpm run spellcheck && pnpm run test && pnpm run test:reports && pnpm run build && pnpm run test:links && pnpm run test:smoke"
   },
   "dependencies": {
+    "fflate": "^0.8.2",
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
