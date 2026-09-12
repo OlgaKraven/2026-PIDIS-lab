@@ -1,0 +1,32 @@
+{
+  "pages": 40,
+  "sets": 600,
+  "archives": [
+    {
+      "scope": "single",
+      "sets": 1
+    },
+    {
+      "scope": "student-all",
+      "sets": 20
+    },
+    {
+      "scope": "teacher-5",
+      "sets": 240
+    },
+    {
+      "scope": "teacher-6",
+      "sets": 210
+    },
+    {
+      "scope": "teacher-7",
+      "sets": 150
+    },
+    {
+      "scope": "teacher-all",
+      "sets": 600
+    }
+  ],
+  "errors": [],
+  "status": "passed"
+}

@@ -1,11 +1,1 @@
-export const courseConfig = {
-  code: 'МДК.05.01',
-  title: 'Проектирование и дизайн информационных систем',
-  academicYear: '2026–2027',
-  lmsUrl: 'https://lms.synergy.ru/',
-  teacher: {
-    name: 'Преподаватель дисциплины',
-    role: 'МДК.05.01',
-    contact: 'Контактные данные доступны в LMS курса',
-  },
-};
+export const courseConfig={code:'МДК.05.01',discipline:'Проектирование и дизайн информационных систем',title:'Лабораторный практикум ПиДИС',heroTitle:'Проектирование',heroAccent:'информационных систем',slogan:'Исследуйте требования, создавайте модели и интерфейсы, проверяйте и обосновывайте проектные решения.',materialsUrl:'',semesters:[5,6,7],lmsUrl:'https://lms.synergy.ru/',logo:'brand/synergy-logo.png',mascot:'brand/rhino-designer.webp',blocksTitle:'От требований к проектной документации',blocksDescription:'Анализ предметной области, проектирование взаимодействия и подготовка спецификаций.',demo:false}

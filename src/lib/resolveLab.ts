@@ -1,0 +1,1 @@
+import data from '../data/variant-data.json';import type {Lab,SubjectArea,DataSection} from '../types';export function resolveLab(lab:Lab,area:SubjectArea):Lab{const sections=(data as Record<string,Record<string,DataSection[]>>)[lab.id]?.[String(area.id)];if(!sections)throw Error('Набор не найден');return {...lab,sourceData:{...lab.sourceData,sections}}}

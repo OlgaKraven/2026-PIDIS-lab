@@ -1,0 +1,12 @@
+{
+  "labs": 20,
+  "variants": 30,
+  "sets": 600,
+  "records": 28200,
+  "totals": {
+    "5": 43,
+    "6": 30,
+    "7": 27
+  },
+  "status": "passed"
+}

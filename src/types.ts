@@ -1,0 +1,83 @@
+export interface TheoryCard {
+  label: string
+  title: string
+  text: string
+}
+
+export interface DataTable {
+  title?: string
+  columns: string[]
+  rows: Array<Array<string | number>>
+}
+
+export interface DataSection {
+  title: string
+  content?: string[]
+  table?: DataTable
+}
+
+export interface SourceData {
+  intro: string
+  sections: DataSection[]
+}
+
+export interface QualityCharacteristic {
+  code: string
+  name: string
+  value: string
+  example: string
+}
+
+export interface QualityProfile {
+  id: number
+  title: string
+  variantRange: string
+  characteristics: QualityCharacteristic[]
+}
+
+export interface SubjectArea {
+  roles:string[]
+  conflict:string
+  id: number
+  code: string
+  title: string
+  systemCode: string
+  description: string
+  criticalFunction: string
+  assets: string[]
+  profileId: number
+  pack: string
+}
+
+export interface Lab {
+  id:string
+  order:number
+  version:string
+  rubric:Array<Array<string|number>>
+  number: number
+  slug: string
+  title: string
+  block: number
+  blockTitle: string
+  semester: number
+  topicCode: string
+  topicTitle: string
+  points: number
+  practicalResult: string
+  situation: string
+  goal: string
+  outcomes: string[]
+  sourceData: SourceData
+  tools: string[]
+  theoryCards: TheoryCard[]
+  task: string[]
+  stages: string[]
+  deliverables: string[]
+  evidence: string[]
+  selfCheck: string[]
+  wordRequirements: string[]
+  professionalChoice: string
+  lmsSteps: string[]
+  reportFile: string
+  recommendedFileName: string
+}

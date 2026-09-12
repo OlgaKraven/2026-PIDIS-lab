@@ -5,3 +5,9 @@ dist/
 scripts/__pycache__/
 *.pyc
 .DS_Store
+
+/private/
+/output/
+/outputs/
+/.qa/
+/.playwright-cli/

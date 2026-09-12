@@ -1,0 +1,38 @@
+[
+  {
+    "archive": "single.zip",
+    "sets": 1,
+    "csvHtmlDocx": "identical",
+    "sha256": "c8ab0d1f688b53bfe1a70e2d60084af29abad4eecf1c62638312da65b49d84a5"
+  },
+  {
+    "archive": "student-all.zip",
+    "sets": 20,
+    "csvHtmlDocx": "identical",
+    "sha256": "123a0b0ce6bdbe1285812715364a1f4d1d857b9029bdd4ac5fc944ba90fd3a7b"
+  },
+  {
+    "archive": "teacher-5.zip",
+    "sets": 240,
+    "csvHtmlDocx": "identical",
+    "sha256": "fe0c8a350dc151e79b4ada2225821850be8c14cbed9fc617b4f5d5d3803a201b"
+  },
+  {
+    "archive": "teacher-6.zip",
+    "sets": 210,
+    "csvHtmlDocx": "identical",
+    "sha256": "a86a541501efd6bd2a1bf8e58aa5b2631218126615f5988673ea4d1d12baabc5"
+  },
+  {
+    "archive": "teacher-7.zip",
+    "sets": 150,
+    "csvHtmlDocx": "identical",
+    "sha256": "b845a93a6c85d291e7cdfdbdaaff0ec4a11711f6216a36b73895a8db1bb5b3d7"
+  },
+  {
+    "archive": "teacher-all.zip",
+    "sets": 600,
+    "csvHtmlDocx": "identical",
+    "sha256": "b9f1f26712ef8da23cb6848ad9d9aa888126c9c21ae8c27dfe323f853fa69885"
+  }
+]
