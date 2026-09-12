@@ -3,36 +3,36 @@
     "archive": "single.zip",
     "sets": 1,
     "csvHtmlDocx": "identical",
-    "sha256": "c8ab0d1f688b53bfe1a70e2d60084af29abad4eecf1c62638312da65b49d84a5"
+    "sha256": "dbebfa8774e7ae373e4c8b618a0e0c11a882a06603e9ca3cfb9e601dd8791dcb"
   },
   {
     "archive": "student-all.zip",
     "sets": 20,
     "csvHtmlDocx": "identical",
-    "sha256": "123a0b0ce6bdbe1285812715364a1f4d1d857b9029bdd4ac5fc944ba90fd3a7b"
+    "sha256": "c82be48837781fe26f2d09294f2a88a3e4fb6655132b915270c329a533fa2700"
   },
   {
     "archive": "teacher-5.zip",
     "sets": 240,
     "csvHtmlDocx": "identical",
-    "sha256": "fe0c8a350dc151e79b4ada2225821850be8c14cbed9fc617b4f5d5d3803a201b"
+    "sha256": "e06b26d7a0e7f63d1abd1d43a2a0f1862349fcc1bb73fdfcb7270d1ca1e48e00"
   },
   {
     "archive": "teacher-6.zip",
     "sets": 210,
     "csvHtmlDocx": "identical",
-    "sha256": "a86a541501efd6bd2a1bf8e58aa5b2631218126615f5988673ea4d1d12baabc5"
+    "sha256": "494938e561dc6c99545ff3b732ab42861f10f50a6313d95b06f777c7a8ec09bf"
   },
   {
     "archive": "teacher-7.zip",
     "sets": 150,
     "csvHtmlDocx": "identical",
-    "sha256": "b845a93a6c85d291e7cdfdbdaaff0ec4a11711f6216a36b73895a8db1bb5b3d7"
+    "sha256": "0ba31ddc482b6538a63e1c48c9680bb3c5056e83f8e23d3743fc1c2985ec026c"
   },
   {
     "archive": "teacher-all.zip",
     "sets": 600,
     "csvHtmlDocx": "identical",
-    "sha256": "b9f1f26712ef8da23cb6848ad9d9aa888126c9c21ae8c27dfe323f853fa69885"
+    "sha256": "93e06621c41016eab1f12e9e0f16c8f228eb9c6dba18ddb42d721bef74d58b9f"
   }
 ]
