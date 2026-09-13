@@ -23,4 +23,14 @@ html[data-theme=dark] .hero,html[data-theme=dark] .lab-summary,html[data-theme=d
 .hero h1 { max-width: 12ch; overflow-wrap: normal; }
 .hero h1 span { display: block; }
 .hero-visual { z-index: 0; }
+/* Align the three introductory catalog blocks with the banner edges. */
+.site-shell > main > .student-start,
+.site-shell > main > .variant-picker {
+  max-width: 92rem;
+  margin-inline: auto;
+}
+@media (max-width: 620px) {
+  .site-shell > main > .student-start,
+  .site-shell > main > .variant-picker { margin-inline: 0.65rem; }
+}
 @media(max-width: 700px) { .hero h1 { font-size: clamp(1.8rem, 7.8vw, 2.5rem); } }
