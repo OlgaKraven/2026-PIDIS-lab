@@ -307,6 +307,7 @@ function LabPage({ lab: baseLab, subjectArea, profile, onSubjectAreaChange }: { 
 
             <section className="student-start" aria-labelledby="start-title">
               <h2 id="start-title">Начните здесь</h2>
+              <p><a className="button secondary" href={courseConfig.materialsUrl} target="_blank" rel="noopener noreferrer"><BookOpen size={18}/>Материалы для лабораторных работ<ExternalLink size={16}/></a></p>
               <p><strong>ЛР {lab.slug} · Ваш вариант: {subjectArea.code}</strong></p>
               <ol><li>Скачайте архив этой работы.</li><li>Распакуйте его целиком. Откройте файл «Шаблон_для_заполнения.docx».</li><li>Заполните ФИО, группу и вариант {subjectArea.code}. Сохраните рабочую копию.</li><li>Раскройте «Данные и пример». Затем выполняйте шаги ниже по порядку.</li></ol>
               <DownloadButton labs={[lab]} area={subjectArea} profile={profile}/>
